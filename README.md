@@ -8,7 +8,7 @@ create `.env` or **shell script** via AWS Cloudformation outputs
 ## usage
 
 ```yaml
-- uses: afterthought/action-aws-cf-to-dotenv@v1.3.1
+- uses: afterthought/action-aws-cf-to-dotenv@v1
   env:
     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} # required
     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # required
@@ -22,7 +22,7 @@ create `.env` or **shell script** via AWS Cloudformation outputs
 
 Output parameter names are converted to UPPER_SNAKE_CASE.
 
-⚠️ if output file already exists `action_aws_cf_to_dotenv` will append data to output file(1.3.0)
+⚠️ if output file already exists `action_aws_cf_to_dotenv` will append data to output file
 
 ## option
 
