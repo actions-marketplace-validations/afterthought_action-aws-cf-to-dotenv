@@ -11,7 +11,7 @@ async function run() {
 
 
   try {
-    const stackNamesInput = core.getInput('stack-name', {required: true})
+    const stackNamesInput = core.getInput('stack-names', {required: true})
     const format = core.getInput('format', {required: true})
     const output = core.getInput('output', {required: true})
     const prefix = core.getInput('prefix')

@@ -5,8 +5,8 @@ branding:
   icon: 'lock'
   color: 'yellow'
 inputs:
-  stack-name:
-    description: 'required. AWS Cloudformation stack name'
+  stack-names:
+    description: 'required. AWS Cloudformation stack names separated by commas'
     required: true
   format:
     description: 'dotenv(KEY=value), shell(export KEY=value)'

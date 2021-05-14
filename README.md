@@ -14,7 +14,7 @@ create `.env` or **shell script** via AWS Cloudformation outputs
     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # required
     AWS_DEFAULT_REGION: ap-northeast-2 # required
   with:
-    stack-name: /opensource/action-aws-ssm-to-dotenv # required
+    stack-names: stack1, stack2, stackN
     format: shell
     output: .env.development
     prefix: CF_
@@ -26,8 +26,8 @@ Output parameter names are converted to UPPER_SNAKE_CASE.
 
 ## option
 
-### stack-name(required)
-Name of cloudformation stack.
+### stack-names(required)
+Name of cloudformation stacks separated by commas.
 
 ### format(default `dotenv`)
 optional, default=dotenv  
