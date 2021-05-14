@@ -1,0 +1,25 @@
+name: 'AWS CF to .env'
+description: 'load AWS Cloudformation Output Parameters to `.env`'
+author: 'Charles Swanberg<cswanberg@mad-swan.com>'
+branding:
+  icon: 'lock'
+  color: 'yellow'
+inputs:
+  stack-name:
+    description: 'required. AWS Cloudformation stack name'
+    required: true
+  format:
+    description: 'dotenv(KEY=value), shell(export KEY=value)'
+    default: 'dotenv'
+    required: false
+  output:
+    description: 'output filename'
+    default: '.env'
+    required: false
+  prefix:
+    description: 'if `prefix:ACTION_` Ouptut=MyVar -> ACTION_MY_VAR'
+    required: false
+
+runs:
+  using: 'node12'
+  main: 'lib/index.js'
