@@ -1,6 +1,6 @@
 Project base created from very similar action, [https://github.com/deptno/action-aws-ssm-to-dotenv](https://github.com/deptno/action-aws-ssm-to-dotenv).
 
-# action aws ssm to dotenv
+# action aws CF to dotenv
 ![](https://github.com/afterthought/action-aws-cf-to-dotenv/workflows/v1/badge.svg)
 
 create `.env` or **shell script** via AWS Cloudformation outputs
