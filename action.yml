@@ -6,8 +6,13 @@ branding:
   color: 'yellow'
 inputs:
   stack-names:
-    description: 'required. AWS Cloudformation stack names separated by commas'
-    required: true
+    description: 'AWS Cloudformation stack names separated by commas.'
+    default: ''
+    required: false
+  tag-filters:
+    description: 'Comma separated list of tag name:value pairs. I.e. env:prod,service:web1. Include only stacks with matching tag name/values.'
+    default: ''
+    required: false
   format:
     description: 'dotenv(KEY=value), shell(export KEY=value)'
     default: 'dotenv'

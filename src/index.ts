@@ -12,6 +12,7 @@ async function run() {
 
   try {
     const stackNamesInput = core.getInput('stack-names', {required: true})
+    const tagFiltersInput = core.getInput('tag-filters', {required: true})
     const format = core.getInput('format', {required: true})
     const output = core.getInput('output', {required: true})
     const prefix = core.getInput('prefix')
@@ -20,6 +21,7 @@ async function run() {
     let nextToken: string
 
     let stackNames = stackNamesInput.split(',')
+    let tagFilters = tagFiltersInput.split(',')
     try {
       do {
         const result: DescribeStacksCommandOutput = await cloudformation
@@ -28,7 +30,14 @@ async function run() {
           })
 
         let outputs = result.Stacks
-          .filter(stack => stackNames.includes(stack.StackName))
+          .filter(stack => stackNames.length == 0 || stackNames.includes(stack.StackName))
+          .filter(stack => {
+            if (tagFilters.length == 0) return true;
+            
+            const stackTags = (stack.Tags || []).map(tag => `${tag.Key}:${tag.Value}`);
+
+            return tagFilters.every((filterValue) => stackTags.includes(filterValue));
+          })
           .flatMap(stack => stack.Outputs)
 
         nextToken = result.NextToken
