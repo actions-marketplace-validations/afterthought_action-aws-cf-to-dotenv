@@ -11,8 +11,8 @@ async function run() {
 
 
   try {
-    const stackNamesInput = core.getInput('stack-names', {required: true})
-    const tagFiltersInput = core.getInput('tag-filters', {required: true})
+    const stackNamesInput = core.getInput('stack-names', {required: false})
+    const tagFiltersInput = core.getInput('tag-filters', {required: false})
     const format = core.getInput('format', {required: true})
     const output = core.getInput('output', {required: true})
     const prefix = core.getInput('prefix')
