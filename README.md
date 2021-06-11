@@ -26,8 +26,11 @@ Output parameter names are converted to UPPER_SNAKE_CASE.
 
 ## option
 
-### stack-names(required)
+### stack-names(optional)
 Name of cloudformation stacks separated by commas.
+
+### tag-filters(optional)
+Comma separated list of tag name:value pairs. I.e. env:prod,service:web1. Include only stacks with matching tag name/values.
 
 ### format(default `dotenv`)
 optional, default=dotenv  

@@ -20,8 +20,8 @@ async function run() {
 
     let nextToken: string
 
-    let stackNames = stackNamesInput.split(',')
-    let tagFilters = tagFiltersInput.split(',')
+    let stackNames = stackNamesInput == '' ? [] : stackNamesInput.split(',')
+    let tagFilters = tagFiltersInput == '' ? [] : tagFiltersInput.split(',')
     try {
       do {
         const result: DescribeStacksCommandOutput = await cloudformation
@@ -33,7 +33,6 @@ async function run() {
           .filter(stack => stackNames.length == 0 || stackNames.includes(stack.StackName))
           .filter(stack => {
             if (tagFilters.length == 0) return true;
-            
             const stackTags = (stack.Tags || []).map(tag => `${tag.Key}:${tag.Value}`);
 
             return tagFilters.every((filterValue) => stackTags.includes(filterValue));

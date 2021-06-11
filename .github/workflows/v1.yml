@@ -1,51 +1,27 @@
 name: v1
 
 on:
-  push:
-    tags:
-      - v1*
+  push: 
+    branches: [master]
 
 jobs:
-  v1_3_1:
+  v1_0_3:
     runs-on: ubuntu-latest
     steps:
-      - uses: deptno/action-aws-ssm-to-dotenv@v1.3.1
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          ssm-path: /opensource/action-aws-ssm-to-dotenv
-          format: yaml
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ap-northeast-2
-      - run: cat .env
-      - uses: deptno/action-aws-ssm-to-dotenv@v1.3.1
+          path: "action-aws-cf-to-dotenv"
+      - uses: ./
         with:
-          ssm-path: /opensource/action-aws-ssm-to-dotenv
-          format: yaml
+          stack-names: "foo"
+          prefix: CF_
+          output: .env
+          format: shell
+
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ap-northeast-2
+          AWS_ACCESS_KEY_ID: foo
+          AWS_SECRET_ACCESS_KEY: foo
+          AWS_DEFAULT_REGION: us-east-1
       - run: cat .env
-  v1_1_1:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deptno/action-aws-ssm-to-dotenv@v1.1.1
-        with:
-          ssm-path: /opensource/action-aws-ssm-to-dotenv
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ap-northeast-2
-      - run: cat .env
-  v1_0_2:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deptno/action-aws-ssm-to-dotenv@v1.0.2
-        with:
-          ssm-path: /opensource/action-aws-ssm-to-dotenv
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ap-northeast-2
-      - run: cat .env
+     
