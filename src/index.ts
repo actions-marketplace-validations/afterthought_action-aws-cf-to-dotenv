@@ -37,12 +37,13 @@ async function run() {
 
             return tagFilters.every((filterValue) => stackTags.includes(filterValue));
           })
+          .filter(stack => stack.Outputs != null)
           .flatMap(stack => stack.Outputs)
+
 
         nextToken = result.NextToken
         allOutputs.push(...outputs)
       } while (nextToken)
-
 
       const envs = allOutputs
         .map<Output>(output => ({
